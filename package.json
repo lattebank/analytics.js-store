@@ -1,21 +1,8 @@
 {
-  "name": "store",
-  "version": "1.3.20",
+  "name": "@lattebank/analytics.js-store",
   "description": "A localStorage wrapper for all browsers without using cookies or flash. Uses localStorage, globalStorage, and userData behavior under the hood",
-  "main": "store.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/marcuswestin/store.js.git"
-  },
-  "author": "Marcus Westin <narcvs@gmail.com>",
+  "version": "1.3.20-1",
   "license": "MIT",
-  "bugs": {
-    "url": "http://github.com/marcuswestin/store.js/issues"
-  },
-  "homepage": "https://github.com/marcuswestin/store.js#readme",
   "devDependencies": {
     "budo": "^7.1.0",
     "lodash": "^3.10.1",
@@ -23,6 +10,11 @@
     "node-localstorage": "^0.6.0",
     "request": "^2.67.0",
     "uglify-js": "v1.3.4"
+  },
+  "main": "store.js",
+  "repository": "https://github.com/lattebank/analytics.js-store",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
     "browser": "*",

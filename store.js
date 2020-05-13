@@ -1,21 +1,6 @@
 "use strict"
-// Module export pattern from
-// https://github.com/umdjs/umd/blob/master/returnExports.js
-;(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.store = factory();
-  }
-}(this, function () {
-	
+
+module.exports = (function () {
 	// Store.js
 	var store = {},
 		win = (typeof window != 'undefined' ? window : global),
@@ -43,9 +28,14 @@
 		transactionFn(val)
 		store.set(key, val)
 	}
-	store.getAll = function() {}
+	store.getAll = function() {
+		var ret = {}
+		store.forEach(function(key, val) {
+			ret[key] = val
+		})
+		return ret
+	}
 	store.forEach = function() {}
-
 	store.serialize = function(value) {
 		return JSON.stringify(value)
 	}
@@ -76,13 +66,6 @@
 		}
 		store.remove = function(key) { storage.removeItem(key) }
 		store.clear = function() { storage.clear() }
-		store.getAll = function() {
-			var ret = {}
-			store.forEach(function(key, val) {
-				ret[key] = val
-			})
-			return ret
-		}
 		store.forEach = function(callback) {
 			for (var i=0; i<storage.length; i++) {
 				var key = storage.key(i)
@@ -162,13 +145,6 @@
 			}
 			storage.save(localStorageName)
 		})
-		store.getAll = function(storage) {
-			var ret = {}
-			store.forEach(function(key, val) {
-				ret[key] = val
-			})
-			return ret
-		}
 		store.forEach = withIEStorage(function(storage, callback) {
 			var attributes = storage.XMLDocument.documentElement.attributes
 			for (var i=0, attr; attr=attributes[i]; ++i) {
@@ -188,4 +164,4 @@
 	store.enabled = !store.disabled
 	
 	return store
-}));
+}())
